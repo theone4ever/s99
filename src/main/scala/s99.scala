@@ -58,4 +58,40 @@ object s99 {
     }
   }
 
+  def compress[A](list: List[A]): List[A] = list match {
+    case Nil=> Nil
+    case h::Nil=> List(h)
+    case h::t =>{ t match {
+      case h1::t1 if(h == h1)=> compress(t)
+      case h1::t1 if(h != h1)=> h::compress(t1)
+    }
+
+    }
+  }
+
+
+  def pack[A](list: List[A]): List[List[A]] = list match {
+    case Nil => Nil
+    case h :: Nil => List(List(h))
+    case h :: t => {
+      t match {
+        case h1 :: t1 if (h == h1) => {
+          val (l1, t1) = untilDiff(h, t)
+          l1::pack(t1)
+        }
+        case h1 :: t1 if (h != h1) => List(h)::pack(t)
+      }
+    }
+  }
+
+  def untilDiff[A](h: A, t: List[A]): (List[A], List[A]) = t match {
+    case Nil=> (List(h), Nil)
+    case h1::t1 if(h == h1) => {
+      val (l1, l2) = untilDiff(h1, t1)
+      (h::l1, l2)
+    }
+    case h1::t1 if(h!=h1) =>{
+      (List(h), t)
+    }
+  }
 }

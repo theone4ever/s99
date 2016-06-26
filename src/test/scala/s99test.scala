@@ -35,4 +35,25 @@ class s99test extends FunSuite{
     assert(flatten(List(List(1, 1), 2, List(3, List(5, 8)))) == List(1,1,2,3,5,8))
   }
 
+  test("compress"){
+    assert(compress(List('a', 'b', 'b', 'c', 'c')) == List('a', 'b', 'c'))
+
+    assert(compress(List('a', 'a', 'b', 'b', 'c', 'c')) == List('a', 'b', 'c'))
+
+    assert(compress(Nil) == Nil)
+
+    assert(compress(List('a', 'a', 'a')) == List('a'))
+  }
+
+  test("untilDiff"){
+    print(untilDiff('a', List('a', 'a', 'a', 'a', 'b')))
+  }
+
+  test("pack"){
+    assert(pack(List('a', 'a',  'b', 'b', 'c')) ==List(List('a', 'a'), List('b', 'b'), List('c')) )
+    assert(pack(List('a',  'b', 'b', 'c')) ==List(List('a'), List('b', 'b'), List('c')) )
+    assert(pack(List('a',  'b', 'b', 'c', 'c')) ==List(List('a'), List('b', 'b'), List('c', 'c')) )
+    assert(pack(Nil) ==  Nil)
+  }
+
 }
