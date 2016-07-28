@@ -1,12 +1,12 @@
 package test.scala
-import main.scala.s99._
+import main.scala.S99._
 import org.scalatest.FunSuite
 
 
 /**
   * Created by theone4ever on 22/06/16.
   */
-class s99test extends FunSuite{
+class S99Test extends FunSuite{
   test("last(list)") {
     assert(last(List(1,2,3)).get == 3)
   }
@@ -54,6 +54,29 @@ class s99test extends FunSuite{
     assert(pack(List('a',  'b', 'b', 'c')) ==List(List('a'), List('b', 'b'), List('c')) )
     assert(pack(List('a',  'b', 'b', 'c', 'c')) ==List(List('a'), List('b', 'b'), List('c', 'c')) )
     assert(pack(Nil) ==  Nil)
+  }
+
+  test("drop"){
+    assert(drop(3, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k')) == List('a', 'b', 'd', 'e', 'g', 'h', 'j', 'k'))
+  }
+
+  test("slice"){
+    assert(slice(3, 7, List('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k')) == List('d', 'e', 'f', 'g'))
+  }
+
+  test("combinations"){
+    assert(combinations(3, List('a', 'b', 'c', 'd')).length == 4)
+    assert(combinations(4, List('a', 'b', 'c', 'd')).length == 1)
+    assert(combinations(2, List('a', 'b', 'c', 'd')).length == 6)
+    assert(combinations(1, List('a', 'b', 'c', 'd')).length == 4)
+  }
+
+  test("lsort"){
+    print(lsort(List(List('a', 'b', 'c'), List('d', 'e'), List('f', 'g', 'h'), List('d', 'e'), List('i', 'j', 'k', 'l'), List('m', 'n'), List('o'))))
+  }
+
+  test("lsortFeq"){
+    print(lsortFeq(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o))))
   }
 
 }
