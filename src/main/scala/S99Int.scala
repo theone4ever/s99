@@ -17,29 +17,24 @@ package arithmetic {
       print(array)
       array.length
     }
+
+    def factors: List[Int] = {
+      if(start ==1) List(1)
+      else if(start == 2) List(1,2)
+      else (1 to start/2 reverse).filter(start %_ == 0).toList
+    }
+
+    def primeFactors: List[Int] = {
+      factors.filter(_.isPrime)
+    }
   }
 
   object S99Int {
     implicit def int2S99Int(i: Int): S99Int = new S99Int(i)
 
     def gcd(one: Int, two: Int): Int = {
-      if (one == 1 || two == 1)
-        1
-      else if(one == 2){
-        if(two%2 == 0) 2
-        else 1
-      }else if( two == 2){
-        if( one%2 == 0) 2
-        else 1
-      }
-      else {
-        val oneDividors = (1 to one / 2 reverse).filter(one % _ == 0)
-        val twoDividors = (1 to two / 2 reverse).filter(two % _ == 0)
-        oneDividors.find(twoDividors.contains(_)).get
-      }
+        one.factors.find(two.factors.contains(_)).get
     }
-
-
   }
 
 }

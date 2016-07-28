@@ -27,4 +27,8 @@ class S99IntTest extends FunSuite{
   test("totient"){
     assert(10.totient == 5)
   }
+
+  test("primeFactors"){
+    assert(315.primeFactors == List(7,5,3,1))
+  }
 }
