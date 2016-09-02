@@ -31,4 +31,12 @@ class S99IntTest extends FunSuite{
   test("primeFactors"){
     assert(315.primeFactors == List(7,5,3,1))
   }
+
+  test("listPrimesinRange"){
+    assert(listPrimesinRange(7 to 31) ==  List(7, 11, 13, 17, 19, 23, 29, 31))
+  }
+
+  test("goldbach"){
+    print(28.goldbach)
+  }
 }
