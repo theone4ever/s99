@@ -1,5 +1,6 @@
 package test.scala
 import main.scala.S99._
+import main.scala.{BinaryTree, TreeNode}
 import org.scalatest.FunSuite
 
 
@@ -79,4 +80,80 @@ class S99Test extends FunSuite{
     print(lsortFeq(List(List('a, 'b, 'c), List('d, 'e), List('f, 'g, 'h), List('d, 'e), List('i, 'j, 'k, 'l), List('m, 'n), List('o))))
   }
 
+
+  test("encode"){
+    assert(encode(List('a', 'a',  'b', 'b', 'c')) ==List((2, 'a'), (2, 'b'), (1, 'c')) )
+    assert(pack(Nil) ==  Nil)
+  }
+
+  test("encodeModified"){
+    assert(encodeModified(List('a', 'a',  'b', 'b', 'c')) ==List((2, 'a'), (2, 'b'), 'c'))
+    assert(pack(Nil) ==  Nil)
+  }
+
+  test("decode"){
+    assert(decode(List((4,'a'), (2,'b'), (1, 'c'))) ==List('a', 'a', 'a','a', 'b', 'b', 'c'))
+  }
+
+
+  test("encodeDirect"){
+    assert(encodeDirect(List('a', 'a', 'a', 'a', 'b', 'c', 'c', 'a', 'a', 'd', 'e', 'e', 'e', 'e')) == List((4,'a'), (1,'b'), (2,'c'), (2,'a'), (1,'d'), (4,'e')))
+  }
+
+  test("duplicate"){
+    assert(duplicate(List('a', 'b', 'c')) == List('a', 'a', 'b', 'b', 'c', 'c'))
+  }
+
+  test("duplicateN"){
+    assert(duplicateN2(List('a', 'b', 'c'), 2) == List('a', 'a', 'b', 'b', 'c', 'c'))
+
+  }
+
+
+  test("bfs"){
+    val tree = TreeNode(8,9,10)
+    val n1 = TreeNode(7)
+    val n2 = TreeNode(6)
+    val n3 = TreeNode(5)
+    val n4 = TreeNode(4)
+    tree.left.left = n1
+    tree.left.right = n2
+    tree.right.left = n3
+    tree.right.right = n4
+    println(tree)
+
+    assert(BinaryTree.bfs(tree, 3).getOrElse(null) == n4)
+
+
+  }
+
+
+
+  test("maxLevel"){
+    val tree = TreeNode(8,9,10)
+    val n1 = TreeNode(7)
+    val n2 = TreeNode(6)
+    val n3 = TreeNode(5)
+    tree.left.left = n1
+    tree.left.right = n2
+    tree.right.left = n3
+    println(tree)
+    println(BinaryTree.maxLevel(tree))
+  }
+
+  test("printPath2Leaf"){
+    val tree = TreeNode(8,9,10)
+    val n1 = TreeNode(7)
+    val n2 = TreeNode(6)
+    val n3 = TreeNode(5)
+    val n4 = TreeNode(4)
+    tree.left.left = n1
+    tree.left.right = n2
+    tree.right.left = n3
+    tree.right.right = n4
+    BinaryTree.printPath2Leaf(tree, List())
+  }
+
+
+>>>>>>> some more finished:src/test/scala/s99test.scala
 }
